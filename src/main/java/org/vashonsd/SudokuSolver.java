@@ -4,6 +4,7 @@ public class SudokuSolver {
 
     public static void solvePuzzle(Board board) { // and so begins the not fun times...
         boolean isStillSolvable;
+        System.out.println(board);
         while (!board.isFinished()) {
             isStillSolvable = false; // if it fails to make any changes after a full screen of the board, the puzzle cannot be solved (Or it failed)
             for (int x = 1; x <= 9; x++) {
@@ -14,7 +15,7 @@ public class SudokuSolver {
                             if (board.makeGuess(x,y,notes[0])) {
                                 isStillSolvable = true;
                             } else {
-                                System.out.println("Made an incorrect guess " + x + " " + y + " " + notes[0] + ". Only note in cell");
+                                System.out.println("Made an incorrect guess " + x + " " + y + " " + notes[0] + ". Only note in cell"); // This should never appear, and is only used for debugging
                             }
                         } else { // Check if it contains the only appearance of a note in the square/row/column
                             for (int i : notes) {
@@ -53,7 +54,8 @@ public class SudokuSolver {
                                     if (board.makeGuess(x, y, i)) {
                                         isStillSolvable = true;
                                     } else {
-                                        System.out.println("Made an incorrect guess " + x + " " + y + " " + i + ". Only Note in square");
+                                        System.out.println(board);
+                                        System.out.println("Made an incorrect guess " + x + " " + y + " " + i + ". Only Note in square"); // In theory, this should never appear... In practice though...
                                     }
                                 }
                             }
